@@ -1,0 +1,59 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="http://alexander.com/services"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://alexander.com/services">
+            <xsd:element name="RequestAdder">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="number1" type="xsd:float"/>
+                        <xsd:element name="number2" type="xsd:float"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ResponseAdder">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="xsd:float"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="ResponseAdder">
+        <part element="ResponseAdder" name="parameter"/>
+    </message>
+    <message name="RequestAdder">
+        <part element="RequestAdder" name="parameter"/>
+    </message>
+
+    <portType name="Port">
+        <operation name="Adder">
+            <documentation>Adds two numbers</documentation>
+            <input message="RequestAdder"/>
+            <output message="ResponseAdder"/>
+        </operation>
+    </portType>
+
+    <binding name="PortSoap" type="Port">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="Adder">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="PortService">
+        <documentation>This is a service that lets you add two numbers (implemented with Spring)</documentation>
+        <port binding="PortSoap" name="PortSoap">
+            <soap:address location="http://localhost:8080/adder"/>
+        </port>
+    </service>
+</definitions>
