@@ -21,7 +21,8 @@ To send requests to this web service, following example can be used as a templat
     </soap:Body>
 </soap:Envelope>
 ```
-The request must be a POST request to http://localhost:8080/adder.
+The request must be a POST request to http://localhost:8080/adder. <br>
+The data type for both numbers is float. 
 
 # Response
 Following example can be used to check if the response is correct:
