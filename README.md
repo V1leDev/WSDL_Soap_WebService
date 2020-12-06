@@ -22,3 +22,16 @@ To send requests to this web service, following example can be used as a templat
 </soap:Envelope>
 ```
 The request must be a POST request to http://localhost:8080/adder.
+
+# Response
+Following example can be used to check if the response is correct:
+ ```xml
+ <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:ResponseAdder xmlns:ns2="http://alexander.com/services">
+            <ns2:result>521.5</ns2:result>
+        </ns2:ResponseAdder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+ ```
